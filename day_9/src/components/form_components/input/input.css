@@ -1,0 +1,15 @@
+.input-container{
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem
+
+}
+
+.input-container input{
+    padding:0.5rem;
+}
+.error_text{
+    font-size: 0.9rem;
+    color:red;
+    line-height: 0.9rem;
+}
