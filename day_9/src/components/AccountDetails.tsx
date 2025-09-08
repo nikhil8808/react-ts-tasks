@@ -19,6 +19,8 @@ if(!userCtx?.state || !userCtx?.dispatch )
 }
 const {state,dispatch}=userCtx
 
+console.log(state)
+
 const [accountDetails,setAccountDetails]=useState<accountDetails>({
   email:state?.account?.email,
   password:state?.account?.password,
@@ -146,6 +148,7 @@ navigate('/profile')
       <Form
       handleSubmit={handleSubmit} 
       inputs={AccountDetailsInput?.inputs}
+      prev="/"
 
 
 />

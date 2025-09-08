@@ -38,7 +38,33 @@ export type UserContextType = {
 };
 
 
-export const userContext=createContext<UserContextType |undefined>(undefined)
+export const userContext=createContext<UserContextType |undefined>({
+  state:{
+  currentStep: 1,
+  personalInfo: {
+    first_name: "",
+    last_name: "",
+    date_of_birth: "",
+    phone_number: "",
+    gender: ""
+  },
+  account: {
+    email: "",
+    password: "",
+    confirmPassword: "",
+    userAgent: ""
+  },
+  profile: {
+    username: "",
+    profilePicture: null,
+    bio: "",
+    location: "",
+    interests: []
+  }},
+  dispatch:()=>{
+
+  }
+})
 
 
 const UserContextProvider = ({ children }: { children: ReactNode }) => {
@@ -66,18 +92,35 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
     interests: []
   }};
 
+  const getInitialState = () => {
+    const storedState = localStorage.getItem("state");
+    if (storedState) {
+      return JSON.parse(storedState);
+    }
+    return undefined;
+  }
+
     const userReducer = (state: State, action: any) => {
-          
+          let updated_state=null;
          switch(action.type)
          {
             case "UPDATE_PERSONAL_INFO":
-                  return {...state,personalInfo:{...action.payload},currentStep:2}
+                   updated_state= {...state,personalInfo:{...action.payload},currentStep:2}
+                  localStorage.setItem("state",JSON.stringify(updated_state))
+                 return updated_state
             case "UPDATE_ACCOUNT_DETAILS":
-                 return {...state,account:{...action.payload},currentStep:3}
-
-   
+                    updated_state= {...state,account:{...action.payload},currentStep:3}
+                  localStorage.setItem("state",JSON.stringify(updated_state))
+                 return updated_state
+            case "UPDATE_PROFILE_DETAILS":
+                 updated_state= {...state,profile:{...action.payload},currentStep:4}
+                  localStorage.setItem("state",JSON.stringify(updated_state))
+                 return updated_state
+            case "RESET_FORM":
+                 return initialState
             
-            default: 
+
+         default: 
               return state
 
 
@@ -86,7 +129,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
         return state;
     };
 
-    const [state, dispatch] = useReducer(userReducer, initialState);
+    const [state, dispatch] = useReducer(userReducer, initialState,getInitialState);
 
 
 

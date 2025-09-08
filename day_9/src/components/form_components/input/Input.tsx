@@ -4,23 +4,28 @@ import './input.css'
 interface InputProps{
     id:string;
     name:string;
-    label:string;
-    placeholder:string;
+    label?:string;
+    placeholder?:string;
     title?:string;
     type:string;
     options?:string[];
     handleChange:(field:string,value:string)=>void;
-    error:string;
-    value:string
+    error?:string;
+    value:string;
+    disabled:boolean
+
 }
 
 const Input = ({
     id,name,label,placeholder,title,type="text",value,
     options=[],
     handleChange,
-    error
+    error,
+    disabled=false
     
 }:InputProps) => {
+
+    console.log(value)
     
   return (
       <div className='input-container'>
@@ -34,6 +39,7 @@ const Input = ({
               placeholder={placeholder}
               onChange={(e)=>handleChange(name,e?.target?.value)}
               value={value}
+              disabled={disabled}
 
           />:<select
              id={id}
@@ -41,7 +47,7 @@ const Input = ({
                  onChange={(e)=>handleChange(name,e?.target?.value)}
                  
           >
-            <option value="" disabled >Select {name}</option>
+            <option value="" disabled selected>Select {name}</option>
             {options?.length>0 && options?.map((option,index)=>{
                 return <option 
                    selected={value===option}

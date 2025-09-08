@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../input/Input'
+import { useNavigate,Link } from 'react-router-dom';
 
 
 type input={
@@ -16,12 +17,16 @@ type input={
 
 }
 interface formProps{
-    handleSubmit:(e:React.FormEvent<HTMLFormElement>)=>void
-    inputs:input[]
+    handleSubmit:(e:React.FormEvent<HTMLFormElement>)=>void;
+    inputs:input[];
+    prev:string;
 
 }
 
-const Form = ({handleSubmit,inputs}:formProps) => {
+const Form = ({handleSubmit,inputs,prev}:formProps) => {
+  console.log(prev)
+
+  const navigate=useNavigate()
 
   return (
     <form action="" onSubmit={handleSubmit}>
@@ -37,11 +42,13 @@ const Form = ({handleSubmit,inputs}:formProps) => {
                type={input?.type}
                handleChange={input?.handleChange}
                placeholder={input?.placeholder}
+               disabled={false}
             
             />
 
         })}
-        <div>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+          <Link to={prev}>Go Back</Link>
           <button type="submit"> Submit</button>
         </div>
       

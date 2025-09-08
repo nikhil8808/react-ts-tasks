@@ -18,8 +18,8 @@ type personalInfo = {
 const PersonalInfo = () => {
   const userCtx = useContext(userContext);
 if (!userCtx?.state || !userCtx?.dispatch) {
-  throw new Error("PersonalInfo must be used within a UserContextProvider");
-  return
+  // throw new Error("PersonalInfo must be used within a UserContextProvider");
+  // return
 }
   const {state, dispatch } = userCtx;
 
@@ -140,6 +140,7 @@ navigate('/account-details')
             handleChange={handleChange}
             error={errors?.first_name}
             value={personalInfo?.first_name}
+            disabled={false}
 
           />
           <Input
@@ -151,6 +152,7 @@ navigate('/account-details')
              handleChange={handleChange}
                  error={errors?.last_name}
              value={personalInfo?.last_name}
+               disabled={false}
 
           />
           <Input
@@ -162,6 +164,7 @@ navigate('/account-details')
              handleChange={handleChange}
                 error={errors?.date_of_birth}
              value={personalInfo?.date_of_birth}
+               disabled={false}
 
           />
           <Input
@@ -173,6 +176,7 @@ navigate('/account-details')
              handleChange={handleChange}
               error={errors?.phone_number}
               value={personalInfo?.phone_number}
+                disabled={false}
           />
           <Input
             type="select"
@@ -188,6 +192,7 @@ navigate('/account-details')
              handleChange={handleChange}
              error={errors?.gender}
                 value={personalInfo?.gender}
+                  disabled={false}
           />
         
           <div>

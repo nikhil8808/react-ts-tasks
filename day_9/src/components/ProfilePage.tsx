@@ -20,9 +20,9 @@ if(!userCtx?.state || !userCtx?.dispatch )
 const {state,dispatch}=userCtx
 
 const [accountDetails,setAccountDetails]=useState<profileDetails>({
-  username:state?.account?.email,
-  location:state?.account?.password,
-  bio:state?.account?.confirmPassword
+  username:state?.profile?.username,
+  location:state?.profile?.location,
+  bio:state?.profile?.bio
 })
 const [errors,setErrors]=useState<profileDetails>({
   username:"",
@@ -89,7 +89,7 @@ const navigate=useNavigate()
       return
     }
 
-    dispatch({type:"UPDATE_ACCOUNT_DETAILS",payload:accountDetails})
+    dispatch({type:"UPDATE_PROFILE_DETAILS",payload:accountDetails})
 
 navigate('/review-confirm')
     
@@ -142,6 +142,7 @@ navigate('/review-confirm')
       <Form
       handleSubmit={handleSubmit} 
       inputs={AccountDetailsInput?.inputs}
+      prev="/account-details"
 
 
 />
