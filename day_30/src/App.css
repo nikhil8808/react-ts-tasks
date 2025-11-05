@@ -1,0 +1,63 @@
+/* Default Theme (Light) */
+:root {
+  --background: #ffffff;
+  --text: #000000;
+  --primary: #1976d2;
+}
+
+/* Dark Theme */
+body.dark {
+  --background: #121212;
+  --text: #ffffff;
+  --primary: #90caf9;
+}
+
+/* Blue Theme */
+body.blue {
+  --background: #e3f2fd;
+  --text: #0d47a1;
+  --primary: #1565c0;
+}
+
+/* Green Theme */
+body.green {
+  --background: #e8f5e9;
+  --text: #1b5e20;
+  --primary: #388e3c;
+}
+
+/* Purple Theme */
+body.purple {
+  --background: #f3e5f5;
+  --text: #4a148c;
+  --primary: #7b1fa2;
+}
+
+/* Orange Theme */
+body.orange {
+  --background: #fff3e0;
+  --text: #e65100;
+  --primary: #fb8c00;
+}
+
+/* Apply variables globally */
+body {
+  background-color: var(--background);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+/* Example button */
+button {
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
